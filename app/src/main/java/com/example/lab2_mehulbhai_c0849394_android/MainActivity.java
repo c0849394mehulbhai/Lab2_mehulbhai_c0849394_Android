@@ -44,6 +44,13 @@ public class MainActivity extends AppCompatActivity {
                 deleteDataDialog();
             }
         });
+
+        updateProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateDataDialog();
+            }
+        });
     }
 
     public void insertDataDialog() {
@@ -87,8 +94,61 @@ public class MainActivity extends AppCompatActivity {
         delete_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            dbHelperClass.DeleteProductItem(inputPid.getText().toString());
-            alertDialog1.dismiss();
+                dbHelperClass.DeleteProductItem(inputPid.getText().toString());
+                alertDialog1.dismiss();
+            }
+        });
+    }
+
+    public void updateDataDialog() {
+        AlertDialog.Builder alerrDialog = new AlertDialog.Builder(MainActivity.this);
+        View view = getLayoutInflater().inflate(R.layout.dataid_fetch_dialog_layout, null);
+        alerrDialog.setView(view);
+        EditText fetchedId = view.findViewById(R.id.edtFetchId);
+        Button fetch_btn = view.findViewById(R.id.btnFetchData);
+        AlertDialog alertDialog1 = alerrDialog.show();
+
+        fetch_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showUpdateRecordDialog(fetchedId.getText().toString());
+                alertDialog1.dismiss();
+            }
+        });
+    }
+
+    public void showUpdateRecordDialog(String id) {
+        ModelClass modelClass = dbHelperClass.getProductRecord(Integer.parseInt(id));
+
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        View view = getLayoutInflater().inflate(R.layout.update_data_dialog_layout, null);
+
+        EditText productID = view.findViewById(R.id.edtUpdatePId);
+        EditText productName = view.findViewById(R.id.edtUpdatePName);
+        EditText productDesc = view.findViewById(R.id.edtUpdatePDesc);
+        EditText productPrice = view.findViewById(R.id.edtUpdatePPrice);
+        Button update_btn = view.findViewById(R.id.btnUpdateDB);
+
+        alertDialog.setView(view);
+
+        productID.setText(modelClass.getProduct_id());
+        productName.setText(modelClass.getProduct_name());
+        productDesc.setText(modelClass.getProduct_description());
+        productPrice.setText(modelClass.getProduct_price());
+
+        AlertDialog alertDialog1 = alertDialog.show();
+
+        update_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ModelClass modelClass1 = new ModelClass();
+                modelClass1.setProduct_id(productID.getText().toString());
+                modelClass1.setId(id);
+                modelClass1.setProduct_name(productName.getText().toString());
+                modelClass1.setProduct_description(productDesc.getText().toString());
+                modelClass1.setProduct_price(productPrice.getText().toString());
+                dbHelperClass.updateProductRecord(modelClass1);
+                alertDialog1.dismiss();
             }
         });
     }

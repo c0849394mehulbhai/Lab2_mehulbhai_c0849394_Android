@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Lab2_mehulbhai_c0849394_Android/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Lab2_mehulbhai_c0849394_Android/app/src/main/res/layout/dataid_fetch_dialog_layout.xml" value="0.203125" />
         <entry key="..\:/Lab2_mehulbhai_c0849394_Android/app/src/main/res/layout/delete_data_dialog_layout.xml" value="0.203125" />
         <entry key="..\:/Lab2_mehulbhai_c0849394_Android/app/src/main/res/layout/insert_data_dialog_layout.xml" value="0.22" />
+        <entry key="..\:/Lab2_mehulbhai_c0849394_Android/app/src/main/res/layout/update_data_dialog_layout.xml" value="0.203125" />
       </map>
     </option>
   </component>

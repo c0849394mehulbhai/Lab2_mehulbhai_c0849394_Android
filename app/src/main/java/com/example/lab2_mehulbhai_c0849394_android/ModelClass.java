@@ -7,7 +7,7 @@ public class ModelClass {
     String product_description ="";
     String product_price ="";
 
-    public ModelClass(String id, String product_id, String product_name, String product_description, String product_price, String created_at) {
+    public ModelClass(String id, String product_id, String product_name, String product_description, String product_price) {
         this.id = id;
         this.product_id = product_id;
         this.product_name = product_name;
