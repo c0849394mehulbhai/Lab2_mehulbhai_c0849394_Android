@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBHelperClass extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
@@ -80,5 +83,21 @@ public class DBHelperClass extends SQLiteOpenHelper {
         cv.put(product_price, modelClass.getProduct_price());
 
         return db.update(TABLE_NAME, cv, ID + "=?", new String[]{String.valueOf(modelClass.getId())});
+    }
+
+    public List<ModelClass> FetchAllProductData() {
+        List<ModelClass> modelClassList = new ArrayList<>();
+        String fetchAllQuery = "SELECT * from " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(fetchAllQuery, null);
+        if (c.moveToFirst()) {
+            do {
+                ModelClass productModel = new ModelClass(c.getString(0), c.getString(1), c.getString(2), c.getString(4), c.getString(3));
+                modelClassList.add(productModel);
+            }
+            while (c.moveToNext());
+        }
+        db.close();
+        return modelClassList;
     }
 }

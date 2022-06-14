@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         updateProduct = findViewById(R.id.txtUpdateProduct);
         deleteProduct = findViewById(R.id.txtDeleteProduct);
         viewAllProduct = findViewById(R.id.txtViewAllProduct);
+        TextView viewAll = findViewById(R.id.view2);
 
         dbHelperClass = new DBHelperClass(MainActivity.this);
 
@@ -49,6 +53,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateDataDialog();
+            }
+        });
+
+        viewAllProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<ModelClass> allProductList = dbHelperClass.FetchAllProductData();
+                viewAll.setText("");
+
+                for (ModelClass modelClass:allProductList) {
+                    viewAll.append("ID : "+ modelClass.getId()+" | PRODUCT ID : "+ modelClass.getProduct_id()+" | NAME : "+ modelClass.getProduct_name()+" | PRICE : "+ modelClass.getProduct_price()+ " | DESCRIPTION : "+ modelClass.getProduct_description()+" \n\n");
+                }
             }
         });
     }
@@ -78,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
                 dbHelperClass.AddProduct(modelClass);
                 alertDialog1.dismiss();
+                Toast.makeText(getApplicationContext(),"Record Added to DB",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -96,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 dbHelperClass.DeleteProductItem(inputPid.getText().toString());
                 alertDialog1.dismiss();
+                Toast.makeText(getApplicationContext(),"Record Deleted from DB",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -149,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 modelClass1.setProduct_price(productPrice.getText().toString());
                 dbHelperClass.updateProductRecord(modelClass1);
                 alertDialog1.dismiss();
+                Toast.makeText(getApplicationContext(),"Record Updated",Toast.LENGTH_SHORT).show();
             }
         });
     }
