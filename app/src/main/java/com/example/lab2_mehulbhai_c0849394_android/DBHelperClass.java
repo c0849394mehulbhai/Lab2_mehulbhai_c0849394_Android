@@ -1,5 +1,6 @@
 package com.example.lab2_mehulbhai_c0849394_android;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -36,4 +37,24 @@ public class DBHelperClass extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
     }
+
+    //insert new product data
+    public void AddProduct(ModelClass modelClass){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(product_id, modelClass.getProduct_id());
+        contentValues.put(product_name, modelClass.getProduct_name());
+        contentValues.put(product_description, modelClass.getProduct_description());
+        contentValues.put(product_price, modelClass.getProduct_price());
+        sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
+        sqLiteDatabase.close();
+    }
+
+    public void DeleteProductItem(String pId) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.delete(TABLE_NAME,ID+"=?",new String[]{pId});
+        sqLiteDatabase.close();
+    }
+
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtLbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:padding="8dp"
+        android:text="INSERT DATA"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/edtInsertPId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtLbl"
+        android:layout_marginTop="8dp"
+        android:hint="Enter Product ID"
+        android:padding="4dp"
+        android:textAlignment="center"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/edtInsertPName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtInsertPId"
+        android:layout_marginTop="8dp"
+        android:hint="Enter Product Name"
+        android:padding="4dp"
+        android:textAlignment="center"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/edtInsertPPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtInsertPName"
+        android:layout_marginTop="8dp"
+        android:hint="Enter Product Price"
+        android:padding="4dp"
+        android:textAlignment="center"
+        android:textColor="@color/black" />
+
+    <EditText
+        android:id="@+id/edtInsertPDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtInsertPPrice"
+        android:layout_marginTop="8dp"
+        android:hint="Enter Product Description"
+        android:padding="4dp"
+        android:textAlignment="center"
+        android:textColor="@color/black" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_marginTop="8dp"
+        android:id="@+id/btnInsertDB"
+        android:textAllCaps="false"
+        android:layout_below="@id/edtInsertPDesc"
+        android:layout_height="wrap_content"
+        android:text="Insert Data" />
+
+</RelativeLayout>
